@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { ContactsForm, SectionWrapper } from 'components';
+import { ContactsForm, ContactsListFilter, SectionWrapper } from 'components';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const addContact = formDataObj => {
     const hasDuplicate = contacts.some(
@@ -18,6 +19,11 @@ export const App = () => {
   return (
     <SectionWrapper title="Phonebook">
       <ContactsForm addContact={addContact} />
+      <h2>Contacts</h2>
+      <ContactsListFilter
+        filter={filter}
+        setFilter={e => setFilter(e.target.value)}
+      />
     </SectionWrapper>
   );
 };
